@@ -653,6 +653,57 @@
     .reveal,.reveal-stagger > *,.h-anim,.divider{opacity:1 !important;transform:none !important}
     .scroll-hint::after{animation:none}
   }
+
+  /* ============================================================
+     SPARKLE IMAGE HOVER
+     ============================================================ */
+  .sparkle-wrap{
+    position:relative;
+    display:inline-block;
+    cursor:default;
+    transition:filter .4s ease, transform .4s cubic-bezier(.2,.7,.2,1);
+  }
+  .sparkle-wrap:hover{
+    filter:drop-shadow(0 0 18px rgba(212,175,55,.55)) drop-shadow(0 0 40px rgba(212,175,55,.25));
+    transform:scale(1.03);
+  }
+  /* shimmer sweep overlay */
+  .sparkle-wrap::after{
+    content:"";
+    position:absolute;inset:0;
+    border-radius:6px;
+    background:linear-gradient(105deg,
+      transparent 30%,
+      rgba(212,175,55,.18) 48%,
+      rgba(255,240,180,.35) 52%,
+      transparent 70%);
+    background-size:200% 100%;
+    background-position:200% 0;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .sparkle-wrap:hover::after{
+    opacity:1;
+    animation:shimmerSweep 1.2s ease forwards;
+  }
+  @keyframes shimmerSweep{
+    from{background-position:200% 0}
+    to{background-position:-200% 0}
+  }
+
+  /* individual sparkle particles */
+  .sp{
+    position:absolute;
+    pointer-events:none;
+    width:var(--sz,8px);height:var(--sz,8px);
+    animation:spFloat var(--dur,900ms) ease-out forwards;
+  }
+  @keyframes spFloat{
+    0%  {opacity:1;transform:translate(0,0) scale(1) rotate(0deg)}
+    60% {opacity:.9;transform:translate(var(--tx),var(--ty)) scale(1.1) rotate(180deg)}
+    100%{opacity:0;transform:translate(calc(var(--tx)*1.4),calc(var(--ty)*1.8)) scale(.2) rotate(360deg)}
+  }
 </style>
 </head>
 <body>
@@ -711,7 +762,9 @@
         La invitación de papel se pierde. La plantilla genérica se ve barata. Y perseguir confirmaciones te roba semanas que <span class="accent">deberías estar disfrutando</span>. Tu evento merece más que eso.
       </p>
       <div class="problema-orn reveal">
-        <img src="assets/imginvt.png" alt="" style="width:min(320px,80%);height:auto;border-radius:6px" />
+        <div class="sparkle-wrap" id="sparkle-host">
+          <img src="assets/imginvt.png" alt="" style="width:min(320px,80%);height:auto;border-radius:6px;display:block" />
+        </div>
       </div>
     </div>
   </div>
@@ -1130,6 +1183,66 @@
     }, {threshold:0.15});
     ioT.observe(testiMq);
   }
+})();
+</script>
+
+<!-- ============================================================
+     SPARKLE EFFECT
+     ============================================================ -->
+<script>
+(function(){
+  const host = document.getElementById('sparkle-host');
+  if (!host || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  /* SVG shapes: 4-point star, 6-point star, diamond, circle */
+  const SHAPES = [
+    /* 4-pt star */ '<svg viewBox="0 0 20 20"><path d="M10 0 L11.8 8.2 L20 10 L11.8 11.8 L10 20 L8.2 11.8 L0 10 L8.2 8.2 Z" fill="currentColor"/></svg>',
+    /* 6-pt star */ '<svg viewBox="0 0 20 20"><path d="M10 1 L12 7 L18 7 L13.5 11 L15.5 17 L10 13.5 L4.5 17 L6.5 11 L2 7 L8 7 Z" fill="currentColor"/></svg>',
+    /* diamond  */ '<svg viewBox="0 0 20 20"><path d="M10 0 L20 10 L10 20 L0 10 Z" fill="currentColor"/></svg>',
+    /* circle   */ '<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="currentColor"/></svg>',
+  ];
+  const COLORS = ['#D4AF37','#F4E4BC','#FFF8DC','#C8A020','#FFD700'];
+
+  function rand(min,max){ return Math.random()*(max-min)+min; }
+
+  function burst(e){
+    const rect = host.getBoundingClientRect();
+    /* spawn around cursor position within the element */
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
+    const n = Math.floor(rand(6,11));
+
+    for(let i=0;i<n;i++){
+      const sp = document.createElement('div');
+      sp.className = 'sp';
+      const sz = rand(6,14);
+      const angle = rand(0,360) * (Math.PI/180);
+      const dist  = rand(30,90);
+      sp.style.cssText = `
+        left:${cx}px; top:${cy}px;
+        --sz:${sz}px;
+        --tx:${Math.cos(angle)*dist}px;
+        --ty:${Math.sin(angle)*dist - rand(20,50)}px;
+        --dur:${rand(700,1200)}ms;
+        color:${COLORS[Math.floor(rand(0,COLORS.length))]};
+        margin-left:${-sz/2}px; margin-top:${-sz/2}px;
+        animation-delay:${rand(0,120)}ms;
+      `;
+      sp.innerHTML = SHAPES[Math.floor(rand(0,SHAPES.length))];
+      host.appendChild(sp);
+      sp.addEventListener('animationend', ()=> sp.remove());
+    }
+  }
+
+  /* fire on enter + mousemove (throttled) */
+  let last = 0;
+  host.addEventListener('mouseenter', burst);
+  host.addEventListener('mousemove', (e)=>{
+    const now = Date.now();
+    if(now - last < 120) return;
+    last = now;
+    burst(e);
+  });
 })();
 </script>
 
