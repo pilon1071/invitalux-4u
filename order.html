@@ -1159,6 +1159,30 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   </a>
 </div>
 
+<!-- Netlify Forms: scanned at deploy time, submitted via JS -->
+<form name="invitalux-order" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="invitalux-order" />
+  <input name="bot-field" />
+  <input name="orderId" />
+  <input name="plan" />
+  <input name="eventType" />
+  <input name="eventName" />
+  <input name="eventDate" />
+  <input name="guestCount" />
+  <input name="eventTheme" />
+  <input name="eventColors" />
+  <input name="contactName" />
+  <input name="contactEmail" />
+  <input name="contactPhone" />
+  <input name="ceremonyVenue" />
+  <input name="ceremonyAddress" />
+  <input name="ceremonyTime" />
+  <input name="receptionVenue" />
+  <input name="receptionAddress" />
+  <input name="receptionTime" />
+  <input name="extraNotes" />
+</form>
+
 <script>
 /* ============================================================
    Config
@@ -1199,6 +1223,7 @@ const MAX_COLORS = 3;
     const saved = JSON.parse(localStorage.getItem('invitalux_order') || '{}');
     showSuccessScreen(saved);
     openWhatsApp(saved);
+    submitToNetlify(saved);
     localStorage.removeItem('invitalux_order');
     return;
   }
@@ -1568,6 +1593,41 @@ function buildWhatsAppMessage(d){
   msg += fmt('WhatsApp', d.contactPhone);
 
   return msg;
+}
+
+/* ============================================================
+   Submit to Netlify Forms (silent — WhatsApp is primary)
+   ============================================================ */
+function submitToNetlify(data){
+  const fields = {
+    'form-name':        'invitalux-order',
+    'orderId':          data.orderId          || '',
+    'plan':             `${data.plan || ''} ($${data.price || ''} USD)`,
+    'eventType':        data.eventType        || '',
+    'eventName':        data.eventName        || '',
+    'eventDate':        data.eventDate        || '',
+    'guestCount':       data.guestCount       || '',
+    'eventTheme':       data.eventTheme       || '',
+    'eventColors':      data.eventColors      || '',
+    'contactName':      data.contactName      || '',
+    'contactEmail':     data.contactEmail     || '',
+    'contactPhone':     data.contactPhone     || '',
+    'ceremonyVenue':    data.ceremonyVenue    || '',
+    'ceremonyAddress':  data.ceremonyAddress  || '',
+    'ceremonyTime':     data.ceremonyTime     || '',
+    'receptionVenue':   data.receptionVenue   || '',
+    'receptionAddress': data.receptionAddress || '',
+    'receptionTime':    data.receptionTime    || '',
+    'extraNotes':       data.extraNotes       || '',
+  };
+
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: Object.entries(fields)
+      .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
+      .join('&')
+  }).catch(() => {});
 }
 
 /* ============================================================
