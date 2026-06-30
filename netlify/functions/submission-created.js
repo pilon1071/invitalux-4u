@@ -41,17 +41,26 @@ exports.handler = async (event) => {
 
   if (d.eventDate) fields['Fecha Evento'] = d.eventDate;
 
-  await fetch(
-    `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${process.env.AIRTABLE_TABLE_ID}`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ fields }),
-    }
-  );
+  const base = process.env.AIRTABLE_BASE_ID;
+  const table = process.env.AIRTABLE_TABLE_ID;
+  const token = process.env.AIRTABLE_TOKEN;
+  const headers = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
+
+  // Skip if record with this orderId already exists (prevents duplicates on Netlify retries)
+  const existing = await fetch(
+    `https://api.airtable.com/v0/${base}/${table}?filterByFormula=${encodeURIComponent(`{Pedido ID}="${d.orderId}"`)}`,
+    { headers }
+  ).then(r => r.json());
+
+  if (existing.records?.length > 0) {
+    return { statusCode: 200, body: JSON.stringify({ ok: true, skipped: true }) };
+  }
+
+  await fetch(`https://api.airtable.com/v0/${base}/${table}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({ fields }),
+  });
 
   return { statusCode: 200, body: JSON.stringify({ ok: true }) };
 };
