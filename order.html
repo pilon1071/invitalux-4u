@@ -1174,6 +1174,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <input name="contactName" />
   <input name="contactEmail" />
   <input name="contactPhone" />
+  <input name="padrinos" />
+  <input name="damas" />
+  <input name="chambelanes" />
+  <input name="dressCode" />
+  <input name="recommendations" />
+  <input name="hotels" />
+  <input name="agenda" />
   <input name="ceremonyVenue" />
   <input name="ceremonyAddress" />
   <input name="ceremonyTime" />
@@ -1658,33 +1665,70 @@ function showSuccessScreen(data){
 }
 
 /* ============================================================
-   Submit — guardar datos y redirigir a Stripe
+   Submit — guardar en Netlify Forms y redirigir a Stripe
    ============================================================ */
 function submitOrder(){
   if(!validateStep(4)) return;
 
   const plan    = window._selectedPlan;
   const planKey = window._selectedPlanKey;
-
-  // Guardar datos antes de salir a Stripe
-  const orderData = collectOrderData();
-  localStorage.setItem('invitalux_order', JSON.stringify(orderData));
-
-  // Construir URL de retorno con ?paid=true&plan=xxx
-  const returnUrl = window.location.origin + window.location.pathname
-    + '?paid=true&plan=' + planKey;
-
   const stripeLink = plan.stripeLink;
 
-  // Validar que el link de Stripe esté configurado
   if(!stripeLink || stripeLink.startsWith('STRIPE_LINK')){
     alert('⚠️ El link de pago de Stripe no está configurado aún. Contacta al administrador.');
     return;
   }
 
-  // Redirigir a Stripe con URL de retorno
-  const separator = stripeLink.includes('?') ? '&' : '?';
-  window.location.href = stripeLink + separator + 'client_reference_id=' + orderData.orderId;
+  const btn = document.getElementById('payBtn');
+  btn.disabled = true;
+  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:16px;height:16px;animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-4.22-7.64"/></svg> Guardando…`;
+
+  const orderData = collectOrderData();
+  localStorage.setItem('invitalux_order', JSON.stringify(orderData));
+
+  // Enviar a Netlify Forms ANTES de redirigir a Stripe
+  const fields = {
+    'form-name':       'invitalux-order',
+    orderId:           orderData.orderId,
+    plan:              orderData.plan + ' ($' + orderData.price + ' USD)',
+    eventType:         orderData.eventType,
+    eventName:         orderData.eventName,
+    eventDate:         orderData.eventDate,
+    guestCount:        orderData.guestCount,
+    eventTheme:        orderData.eventTheme,
+    eventColors:       orderData.eventColors,
+    contactName:       orderData.contactName,
+    contactEmail:      orderData.contactEmail,
+    contactPhone:      orderData.contactPhone,
+    padrinos:          orderData.padrinos.join(', '),
+    damas:             orderData.damas.join(', '),
+    chambelanes:       orderData.chambelanes.join(', '),
+    dressCode:         orderData.dressCode,
+    recommendations:   orderData.recommendations,
+    hotels:            orderData.hotels.map(h => h.name + (h.contact ? ' — ' + h.contact : '')).join(' | '),
+    ceremonyVenue:     orderData.ceremonyVenue,
+    ceremonyAddress:   orderData.ceremonyAddress,
+    ceremonyTime:      orderData.ceremonyTime,
+    receptionVenue:    orderData.receptionVenue,
+    receptionAddress:  orderData.receptionAddress,
+    receptionTime:     orderData.receptionTime,
+    agenda:            orderData.agenda.map(r => (r.time ? r.time + ' — ' : '') + r.activity).join(' | '),
+    extraNotes:        orderData.extraNotes,
+  };
+
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: Object.entries(fields)
+      .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v || ''))
+      .join('&')
+  })
+  .catch(() => {})
+  .finally(() => {
+    // Redirigir a Stripe aunque falle el envío a Netlify
+    const separator = stripeLink.includes('?') ? '&' : '?';
+    window.location.href = stripeLink + separator + 'client_reference_id=' + orderData.orderId;
+  });
 }
 
 /* ============================================================
