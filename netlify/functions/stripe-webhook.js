@@ -35,7 +35,9 @@ async function markPagado(recordId) {
   });
 }
 
-async function sendWhatsApp(message) {
+const WHATSAPP_TEMPLATE_SID = 'HX963cdd2b50c07421b138b4a3f41933dd';
+
+async function sendWhatsApp(variables) {
   const sid   = process.env.TWILIO_ACCOUNT_SID;
   const token = process.env.TWILIO_AUTH_TOKEN;
   const from  = process.env.TWILIO_FROM;
@@ -49,54 +51,12 @@ async function sendWhatsApp(message) {
       Authorization: 'Basic ' + Buffer.from(`${sid}:${token}`).toString('base64'),
     },
     body: new URLSearchParams({
-      From: `whatsapp:${from}`,
-      To:   `whatsapp:+${to}`,
-      Body: message,
+      From:             `whatsapp:${from}`,
+      To:               `whatsapp:+${to.replace(/^\+/, '')}`,
+      ContentSid:       WHATSAPP_TEMPLATE_SID,
+      ContentVariables: JSON.stringify(variables),
     }).toString(),
   });
-}
-
-function buildMessage(f, orderId, amountPaid, customerEmail) {
-  const line = (label, val) => val ? `${label}: ${val}\n` : '';
-  let msg = `✅ *PAGO CONFIRMADO*\n`;
-  msg += `📋 Pedido: ${orderId}\n`;
-  msg += `💰 ${f['Plan']} — $${amountPaid} USD\n\n`;
-
-  msg += `*EVENTO*\n`;
-  msg += line('📌 Evento', f['Evento']);
-  msg += line('Tipo', f['Tipo']);
-  msg += line('📅 Fecha', f['Fecha Evento']);
-  msg += line('👥 Invitados', f['Invitados']);
-  msg += line('🎨 Temática', f['Tematica']);
-  msg += line('🌈 Colores', f['Colores']);
-
-  if (f['Lugar Recepcion']) {
-    msg += `\n*RECEPCIÓN*\n`;
-    msg += line('📍', f['Lugar Recepcion']);
-    msg += line('Dirección', f['Direccion Recepcion']);
-    msg += line('Hora', f['Hora Recepcion']);
-  }
-  if (f['Lugar Ceremonia']) {
-    msg += `\n*CEREMONIA*\n`;
-    msg += line('⛪', f['Lugar Ceremonia']);
-    msg += line('Dirección', f['Direccion Ceremonia']);
-    msg += line('Hora', f['Hora Ceremonia']);
-  }
-  if (f['Agenda'])       msg += `\n*AGENDA*\n${f['Agenda']}\n`;
-  if (f['Padrinos'])     msg += `\n*PADRINOS*\n${f['Padrinos']}\n`;
-  if (f['Damas'])        msg += `\nDamas: ${f['Damas']}\n`;
-  if (f['Chambelanes'])  msg += `Chambelanes: ${f['Chambelanes']}\n`;
-  if (f['Dress Code'])   msg += `\nDress Code: ${f['Dress Code']}\n`;
-  if (f['Recomendaciones']) msg += `\n*RECOMENDACIONES*\n${f['Recomendaciones']}\n`;
-  if (f['Hoteles'])      msg += `\n*HOTELES*\n${f['Hoteles']}\n`;
-  if (f['Notas Extra'])  msg += `\n*NOTAS*\n${f['Notas Extra']}\n`;
-
-  msg += `\n*CLIENTE*\n`;
-  msg += line('👤', f['Nombre Cliente']);
-  msg += line('📧', f['Email Cliente'] || customerEmail);
-  msg += line('📱 WhatsApp', f['WhatsApp Cliente']);
-
-  return msg;
 }
 
 exports.handler = async (event) => {
@@ -125,11 +85,26 @@ exports.handler = async (event) => {
 
     if (record) {
       await markPagado(record.id);
-      const msg = buildMessage(record.fields, orderId, amountPaid, customerEmail);
-      await sendWhatsApp(msg);
+      const f = record.fields;
+      await sendWhatsApp({
+        '1': orderId,
+        '2': f['Plan']            || '',
+        '3': amountPaid,
+        '4': f['Nombre Cliente']  || customerEmail,
+        '5': f['WhatsApp Cliente']|| '',
+        '6': f['Evento']          || '',
+        '7': f['Fecha Evento']    || '',
+      });
     } else {
-      const msg = `✅ *PAGO CONFIRMADO*\n📋 ${orderId || 'Sin ID'}\n💰 $${amountPaid} USD\n📧 ${customerEmail}\n\n⚠️ Pedido no encontrado en Airtable. Revisa Netlify Forms.`;
-      await sendWhatsApp(msg);
+      await sendWhatsApp({
+        '1': orderId || 'Sin ID',
+        '2': 'Desconocido',
+        '3': amountPaid,
+        '4': customerEmail,
+        '5': '',
+        '6': 'No encontrado en Airtable',
+        '7': '',
+      });
     }
   }
 
