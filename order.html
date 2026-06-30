@@ -1686,7 +1686,6 @@ function submitOrder(){
   const separator = stripeLink.includes('?') ? '&' : '?';
   window.location.href = stripeLink + separator + 'client_reference_id=' + orderData.orderId;
 }
-</script>
 
 /* ============================================================
    Retry WhatsApp from success screen
@@ -1695,7 +1694,6 @@ function retryWhatsApp(){
   const saved = JSON.parse(localStorage.getItem('invitalux_order_sent') || '{}');
   if(saved.orderId) openWhatsApp(saved);
 }
-
 </script>
 
 <style>
