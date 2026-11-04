@@ -1,0 +1,9 @@
+(globalThis["webpackChunk_canva_web"] = globalThis["webpackChunk_canva_web"] || []).push([[9047],{
+
+/***/ 367969:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);__web_req__(840250);__web_req__(507826);globalThis._5f74ec40302898c5a55451c9fbd04240 = globalThis._5f74ec40302898c5a55451c9fbd04240 || {};(function(__c) {var c1=__c.c1;var l1=__c.l1;var Syc=l1({version:c1(1,1),text:__c.k1(4,"Richtext2")}),Tyc=c1(1,"richtext2"),Uyc;Uyc=__c.b1.ref(2,__c.n1({version:void 0},Syc));
+var Vyc=l1({type:Tyc,value:Uyc}),Wyc=__c.n1({type:void 0},l1({type:c1(1,"boolean"),value:__c.X0(2,{kind:1})}),l1({type:c1(1,"non-negative-double"),value:__c.h1(2,{min:0})}),l1({type:c1(1,"double"),value:__c.h1(2)}),l1({type:c1(1,"string"),value:__c.X0(2,__c.$0())}),Vyc,l1({type:c1(1,"image-fill"),value:__c.k1(2,"Fill")}),l1({type:c1(1,"video-fill"),value:__c.k1(2,"Fill")}));var Xyc=l1({type:c1(1,"source")}),Yyc=l1({type:c1(1,"instance"),je:__c.b1.ref(2,{kind:9,itemType:Wyc})}),Zyc=c1(1,"document"),$yc=__c.b1.val(2,__c.$0()),azc=__c.f1(3),bzc;bzc=__c.b1.ref(4,__c.n1({type:void 0},Xyc,Yyc));var czc=__c.s_({C:__c.V0({au:__c.m1(1,{domain:Zyc,id:$yc,version:azc,Lb:bzc})})});var dzc=a=>{const b=new Map;if(!a)return b;a.forEach((c,d)=>{switch(c.uqc){case "richtext2":b.set(d,{type:"richtext2",value:{version:1,text:c.value}});break;case "double":b.set(d,{type:"double",value:c.value});break;case "non-negative-double":b.set(d,{type:"non-negative-double",value:c.value});break;default:throw new __c.z(c);}});return b};__c.$tc={Rf:__c.r_()(()=>({p5b({oXa:a,...b},c){return{data:{C:{au:{domain:"document",id:a,version:1,Lb:b.type==="source"?{type:b.type}:{type:b.type,je:dzc(b.je?.Dkc)}}},document:{}},U:c}}})),Sf:czc};
+}).call(globalThis, globalThis._5f74ec40302898c5a55451c9fbd04240);}
+
+}])
+//# sourceMappingURL=sourcemaps/616d81883c6ca60e.js.map

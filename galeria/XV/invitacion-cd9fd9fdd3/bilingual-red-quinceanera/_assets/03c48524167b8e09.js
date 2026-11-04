@@ -1,0 +1,11 @@
+(globalThis["webpackChunk_canva_web"] = globalThis["webpackChunk_canva_web"] || []).push([[30110],{
+
+/***/ 581162:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(30488);__web_req__(333266);globalThis._5f74ec40302898c5a55451c9fbd04240 = globalThis._5f74ec40302898c5a55451c9fbd04240 || {};(function(__c) {var Ud=__c.Ud;var K=__c.K;
+var QPd=function({backgroundColor:a,className:b,yE:c,C7b:d,zh:e}){a=__c.zid(a);const f=NPd(()=>OPd(c,{fontWeight:"normal"}),[c]),g=NPd(()=>OPd(K("qd/aPQ"),{color:"#e65100",fontWeight:"medium"}),[]);return PPd(Ud,{className:["_0kfw7w",b],qfb:{"--I4nFpA":a.backgroundColor,"--yahyHA":a.tj},children:[R7(Ud,{className:"_itHeg",ariaHidden:!0,children:R7(Ud,{tagName:"span",className:"_44uAGA",ariaHidden:!0,children:"+"})}),R7(Ud,{className:"dwCSIw",children:R7(Ud,{className:"TWOVTg",children:R7(e,{text:f})})}),
+d&&R7(Ud,{className:"_8vooaA",children:R7(Ud,{className:"qQjm_A",children:R7(e,{text:g})})})]})},RPd=function(a){switch(a){case 1:return K("XC5mnA");case 2:return K("X04yeg");case 3:return K("SUA2/w");case 4:return K("JNK/YA");default:throw new __c.F(a);}},OPd=function(a,{color:b,fontWeight:c}){c={"font-feature-calt":"on","font-feature-clig":"on","font-feature-liga":"on","font-kerning":"normal","font-size":24,"font-weight":c};b!=null&&(c.color=b);return __c.pm.create({...__c.Sp,stream:__c.Si(__c.yj.ob().attrs(c).cb(a)).build()})},
+SPd=__webpack_require__(296713),R7=SPd.jsx,PPd=SPd.jsxs;var TPd=__webpack_require__(265625).PA;var NPd=__webpack_require__(978109).useMemo;var UPd=TPd(({data:{document:a,C:b},wd:c})=>{const d=RPd(b.Fd.ref.bV);b=b.$4a;a=b!=null?a.HFb.ref.get(b):void 0;return R7(QPd,{backgroundColor:a?.color??__c.K1.backgroundColor,yE:d,C7b:a==null,zh:c.zh})});__c.p$c={Rj:__c.$y()(()=>({...__c.LU,metadata:{type:"signature",name:K("xiuw9A")},C:__c.Zy(UPd)}))};
+}).call(globalThis, globalThis._5f74ec40302898c5a55451c9fbd04240);}
+
+}])
+//# sourceMappingURL=sourcemaps/03c48524167b8e09.js.map

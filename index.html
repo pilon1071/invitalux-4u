@@ -559,6 +559,39 @@
   }
 
   /* ============================================================
+     GALERÍA
+     ============================================================ */
+  .galeria-grid{
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;
+  }
+  .evento{
+    position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+    aspect-ratio:3/4;padding:24px 22px;overflow:hidden;
+    background:var(--velvet);
+    border:1px solid var(--gold-20);border-radius:8px;
+    transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  .evento img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;
+    opacity:.55;transition:opacity .5s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+  }
+  .evento::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(10,9,8,0) 20%, rgba(10,9,8,.75) 62%, rgba(10,9,8,.96) 100%);
+  }
+  .evento > div{position:relative;z-index:1}
+  .evento h3{
+    font-family:var(--display);font-style:italic;font-weight:500;
+    font-size:26px;color:var(--champagne);margin:0 0 4px;letter-spacing:-.005em;
+  }
+  .evento small{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone)}
+  .evento:hover{border-color:var(--gold-60);transform:translateY(-3px);box-shadow:0 30px 60px -30px rgba(212,175,55,.45)}
+  .evento:hover img{opacity:.8;transform:scale(1.04)}
+  .evento:hover small{color:var(--gold)}
+  @media (max-width:900px){ .galeria-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px} }
+  @media (max-width:520px){ .evento{padding:18px 16px} .evento h3{font-size:21px} .evento small{font-size:10.5px;letter-spacing:.12em} }
+
+  /* ============================================================
      8. PRICING
      ============================================================ */
   .pricing-grid{
@@ -717,7 +750,7 @@
     <nav class="nav-links" aria-label="Principal">
       <a href="#solucion">Plantillas</a>
       <a href="#como">Cómo funciona</a>
-      <a href="#testimonios">Galería</a>
+      <a href="#galeria">Galería</a>
     </nav>
     <div class="nav-cta">
       <a class="signin" href="#">Iniciar sesión</a>
@@ -950,6 +983,31 @@
 <div class="wrap"><div class="divider" data-divider></div></div>
 
 <!-- ============================================================
+     GALERÍA
+     ============================================================ -->
+<section id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Galería</p>
+      <h2>Invitaciones <em>reales</em>, para cada celebración.</h2>
+      <p>Elige el tipo de evento y explora ejemplos de invitaciones que hemos diseñado.</p>
+    </div>
+    <div class="galeria-grid reveal">
+      <a class="evento" href="galeria/boda/"><img src="galeria/boda/thumbs/invitacion-006e6d3684.jpg" alt="" loading="lazy" /><div><h3>Boda</h3><small>7 diseños</small></div></a>
+      <a class="evento" href="galeria/XV/"><img src="galeria/XV/thumbs/invitacion-047e4f8265.jpg" alt="" loading="lazy" /><div><h3>XV Años</h3><small>13 diseños</small></div></a>
+      <a class="evento" href="galeria/Aniversario/"><div><h3>Aniversario</h3><small>Próximamente</small></div></a>
+      <a class="evento" href="galeria/Cumpleanos/"><div><h3>Cumpleaños</h3><small>Próximamente</small></div></a>
+      <a class="evento" href="galeria/Bautizo/"><div><h3>Bautizo</h3><small>Próximamente</small></div></a>
+      <a class="evento" href="galeria/Comunion/"><div><h3>Comunión</h3><small>Próximamente</small></div></a>
+      <a class="evento" href="galeria/Despedida/"><div><h3>Despedida</h3><small>Próximamente</small></div></a>
+      <a class="evento" href="galeria/Corporativo/"><div><h3>Corporativo</h3><small>Próximamente</small></div></a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider" data-divider></div></div>
+
+<!-- ============================================================
      TESTIMONIOS
      ============================================================ -->
 <section id="testimonios">
@@ -1068,7 +1126,7 @@
         <ul>
           <li><a href="#solucion">Plantillas</a></li>
           <li><a href="#como">Cómo funciona</a></li>
-          <li><a href="#testimonios">Galería</a></li>
+          <li><a href="#galeria">Galería</a></li>
           <li><a href="#">FAQ</a></li>
           <li><a href="#">Contacto</a></li>
           <li><a href="#">Blog</a></li>

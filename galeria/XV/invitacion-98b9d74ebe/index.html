@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<title>Jacquelinne · Mis XV Años</title>
+<link rel="preconnect" href="/galeria/XV/invitacion-98b9d74ebe/_h/fonts.googleapis.com"></link>
+<link rel="preconnect" href="/galeria/XV/invitacion-98b9d74ebe/_h/fonts.gstatic.com" crossorigin="anonymous"></link>
+<link href="/galeria/XV/invitacion-98b9d74ebe/_h/fonts.googleapis.com/css2__q6f08a3a3.css" rel="stylesheet"></link>
+<style>
+  :root {
+    --rosa:        #E8A0B0;
+    --dorado:      #C9A050;
+    --terciopelo:  #180810;
+    --vino:        #3D1525;
+    --oro-palido:  #F0DFA0;
+    --malva:       #B07898;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #0C0408;
+    color: #F2E8EC;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html { overflow-x: hidden; }
+
+  .page {
+    width: 100%;
+    background: var(--terciopelo);
+  }
+
+  section { position: relative; }
+
+  /* Centrar contenido de todas las secciones a 480px */
+  section:not(.hero) {
+    padding-inline: max(28px, calc((100% - 424px) / 2)) !important;
+  }
+
+  /* ---------- shared atoms ---------- */
+  .label {
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dorado);
+  }
+
+  .script {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .section-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(28px, 7vw, 44px);
+    color: var(--rosa);
+    text-align: center;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: var(--dorado);
+    margin: 0 auto;
+    width: min(240px, 70%);
+  }
+  .ornament::before,
+  .ornament::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dorado));
+  }
+  .ornament::after {
+    background: linear-gradient(90deg, var(--dorado), transparent);
+  }
+  .ornament .star { font-size: 14px; line-height: 1; }
+
+  .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 13px 26px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .pill-btn:active { transform: scale(0.97); }
+
+  .pill-btn--gold {
+    background: linear-gradient(135deg, #D8B060, var(--dorado) 55%, #A9853C);
+    color: #1E0C14;
+    font-weight: 400;
+    box-shadow: 0 6px 24px rgba(201,160,80,0.35);
+  }
+  .pill-btn--gold:hover {
+    box-shadow: 0 8px 30px rgba(201,160,80,0.5);
+    transform: translateY(-1px);
+  }
+
+  .pill-btn--outline {
+    border: 1px solid rgba(201,160,80,0.6);
+    color: var(--oro-palido);
+    background: rgba(201,160,80,0.06);
+  }
+  .pill-btn--outline:hover { background: rgba(201,160,80,0.14); }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .hero-stagger > * { animation: none !important; opacity: 1 !important; }
+    .crown { animation: none !important; }
+    .particle { animation: none !important; }
+  }
+
+  /* ============ SECCIÓN 1 — HERO ============ */
+  .hero {
+    height: 100vh;
+    height: 100svh;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  /* bg.png: paisaje 16:9 cubriendo todo el ancho */
+  .hero-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(1.25);
+  }
+  /* video: retrato 9:16 centrado encima */
+  .hero-media video {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: auto;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(24,8,16,0.1) 0%, rgba(24,8,16,0.4) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero-stagger > * {
+    opacity: 0;
+    animation: heroIn 0.9s ease forwards;
+  }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.3s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.5s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.7s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.9s; }
+  .hero-stagger > *:nth-child(5) { animation-delay: 1.1s; }
+  .hero-stagger > *:nth-child(6) { animation-delay: 1.4s; }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-parents {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    color: rgba(242,232,236,0.92);
+    line-height: 1.6;
+  }
+  .hero-parents em { font-style: italic; color: rgba(242,232,236,0.75); }
+
+  .crown {
+    font-size: 30px;
+    line-height: 1;
+    animation: heroIn 0.9s ease forwards, crownFloat 3s ease-in-out 1.2s infinite;
+    text-shadow: 0 4px 18px rgba(201,160,80,0.55);
+  }
+  @keyframes crownFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  .hero-label {
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--oro-palido);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  }
+
+  .hero-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(52px, 15vw, 88px);
+    color: var(--rosa);
+    text-shadow: 0 4px 30px rgba(24,8,16,0.8), 0 0 60px rgba(232,160,176,0.25);
+    margin-top: -6px;
+  }
+
+  .hero-xv {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.45em;
+    margin-left: 0.45em;
+    color: var(--dorado);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(240,223,160,0.7);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: heroIn 1s ease 2s forwards;
+  }
+  .hero-scroll::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 28px;
+    margin: 8px auto 0;
+    background: linear-gradient(180deg, var(--dorado), transparent);
+  }
+
+  /* ============ SECCIÓN 2 — FECHA ============ */
+  .fecha {
+    background:
+      radial-gradient(ellipse 80% 55% at 50% 38%, rgba(232,160,176,0.10), transparent 70%),
+      var(--terciopelo);
+    padding: 72px 28px 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .fecha-pill {
+    display: inline-block;
+    border: 1px solid rgba(201,160,80,0.65);
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    letter-spacing: 0.06em;
+    color: var(--oro-palido);
+    background: rgba(201,160,80,0.05);
+  }
+
+  .fecha-venue {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--rosa);
+  }
+
+  /* ============ SECCIÓN 3 — PADRINOS ============ */
+  .padrinos {
+    background: var(--vino);
+    padding: 76px 28px 84px;
+    text-align: center;
+  }
+  .padrinos .ornament { margin-bottom: 36px; }
+  .padrinos .label { display: block; margin-bottom: 28px; color: var(--oro-palido); }
+
+  .padrino { margin-bottom: 30px; }
+  .padrino:last-child { margin-bottom: 0; }
+  .padrino-nombre {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(34px, 9vw, 46px);
+    color: #F6EDF1;
+    line-height: 1.25;
+  }
+  .padrino-rol {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--rosa);
+    margin-top: 2px;
+  }
+
+  /* ============ SECCIÓN 4 — CORTE DE HONOR ============ */
+  .corte {
+    background: var(--terciopelo);
+    padding: 76px 24px 84px;
+  }
+  .corte .section-title { margin-bottom: 10px; }
+  .corte-sub {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--malva);
+    margin-bottom: 34px;
+  }
+
+  .corte-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .corte-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: rgba(232,160,176,0.07);
+    border: 1px solid rgba(232,160,176,0.18);
+    border-radius: 14px;
+    padding: 16px 22px;
+  }
+  .corte-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--dorado);
+    min-width: 30px;
+    text-align: center;
+  }
+  .corte-nombre {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: #F2E8EC;
+  }
+
+  /* ============ SECCIÓN 5 — PROGRAMA ============ */
+  .programa {
+    background: linear-gradient(180deg, var(--vino) 0%, var(--terciopelo) 100%);
+    padding: 76px 28px 84px;
+  }
+  .programa-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(28px, 7vw, 40px);
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: var(--oro-palido);
+    margin-bottom: 8px;
+  }
+  .programa .ornament { margin-bottom: 40px; }
+
+  .prog-item {
+    border-left: 3px solid var(--dorado);
+    padding: 4px 0 6px 20px;
+    margin-bottom: 34px;
+  }
+  .prog-item:last-child { margin-bottom: 0; }
+
+  .prog-hora {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .prog-evento {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #F6EDF1;
+    line-height: 1.3;
+  }
+  .prog-detalle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--malva);
+    margin-top: 2px;
+  }
+  .prog-item .pill-btn { margin-top: 14px; font-size: 13px; padding: 10px 20px; }
+
+  /* ============ SECCIÓN 6 — DETALLES ============ */
+  .detalles {
+    background: var(--terciopelo);
+    padding: 76px 24px 84px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .detalles .section-title { margin-bottom: 20px; }
+
+  .det-card {
+    background: rgba(61,21,37,0.55);
+    border: 1px solid rgba(201,160,80,0.18);
+    border-radius: 16px;
+    padding: 34px 28px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .det-icon { font-size: 36px; line-height: 1; }
+  .det-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--oro-palido);
+  }
+  .det-text {
+    font-size: 15px;
+    color: rgba(242,232,236,0.85);
+    max-width: 320px;
+  }
+  .det-card .pill-btn { margin-top: 10px; }
+
+  /* ============ SECCIÓN 7 — RSVP ============ */
+  .rsvp {
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 30%, rgba(232,160,176,0.16), transparent 72%),
+      radial-gradient(ellipse 70% 50% at 50% 100%, rgba(61,21,37,0.9), transparent),
+      var(--terciopelo);
+    padding: 84px 28px 92px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .rsvp-headline {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(30px, 8vw, 46px);
+    color: var(--rosa);
+  }
+  .rsvp-deadline {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rosa);
+    background: rgba(232,160,176,0.1);
+    border: 1px solid rgba(232,160,176,0.3);
+    border-radius: 999px;
+    padding: 8px 20px;
+  }
+  .rsvp .pill-btn--gold {
+    font-size: 16px;
+    padding: 16px 34px;
+    margin-top: 8px;
+  }
+  .rsvp-sub {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: rgba(242,232,236,0.65);
+  }
+
+  /* ============ SECCIÓN 8 — COUNTDOWN ============ */
+  .timer {
+    background: var(--terciopelo);
+    padding: 84px 24px 92px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .timer-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/timer-bg.png');
+    background-size: cover;
+    background-position: center 30%;
+    opacity: 0.16;
+    pointer-events: none;
+  }
+  .timer-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--terciopelo) 0%, rgba(24,8,16,0.35) 45%, var(--terciopelo) 100%);
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--oro-palido);
+    opacity: 0;
+    animation: particleFloat 9s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes particleFloat {
+    0%   { transform: translateY(40px) scale(0.6); opacity: 0; }
+    15%  { opacity: 0.5; }
+    70%  { opacity: 0.25; }
+    100% { transform: translateY(-160px) scale(1); opacity: 0; }
+  }
+
+  .timer-inner { position: relative; z-index: 2; }
+  .timer .section-title { margin-bottom: 38px; }
+
+  .timer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 380px;
+    margin: 0 auto 30px;
+  }
+  .timer-cell {
+    background: rgba(61,21,37,0.5);
+    border: 1px solid rgba(201,160,80,0.22);
+    border-radius: 14px;
+    padding: 18px 4px 14px;
+  }
+  .timer-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(30px, 9vw, 42px);
+    line-height: 1;
+    color: var(--dorado);
+    font-variant-numeric: tabular-nums;
+  }
+  .timer-unit {
+    display: block;
+    margin-top: 8px;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--malva);
+  }
+  .timer-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(242,232,236,0.8);
+  }
+
+  /* ============ SECCIÓN 9 — FOOTER ============ */
+  .footer {
+    background: linear-gradient(180deg, var(--terciopelo) 0%, #0C0408 100%);
+    padding: 84px 28px 64px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .footer-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(46px, 13vw, 72px);
+    color: var(--rosa);
+    line-height: 1.2;
+  }
+  .footer-meta {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(242,232,236,0.5);
+    line-height: 2;
+  }
+  .footer-credit {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--malva);
+  }
+
+  /* ---------- Botón de música flotante ---------- */
+  .music-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,160,80,0.6);
+    background: rgba(24,8,16,0.85);
+    backdrop-filter: blur(8px);
+    color: var(--dorado);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  .music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 26px rgba(201,160,80,0.3); }
+  .music-btn.playing { animation: musicPulse 2s ease-in-out infinite; }
+  @keyframes musicPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    50%       { box-shadow: 0 4px 28px rgba(201,160,80,0.45); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ 1 · HERO ============ -->
+  <section class="hero" data-screen-label="Hero">
+    <div class="hero-media" aria-hidden="true">
+      <img src="assets/bg.png" alt="Fondo quinceañera Jacquelinne">
+      <video id="heroVideo" muted playsinline preload="auto" poster="assets/bg.png"></video>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content hero-stagger">
+      <p class="hero-parents">Evangelina Soto &amp; Julio Cadena<br></br><em>tienen el honor de invitarte</em></p>
+<p class="hero-label">Quinceañera de su hija</p>
+      <h1 class="hero-name">Jacquelinne</h1>
+      <p class="hero-xv">XV</p>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">Desliza</div>
+  </section>
+
+  <!-- ============ 2 · FECHA ============ -->
+  <section class="fecha" data-screen-label="Fecha">
+    <div class="reveal fecha-pill">Sábado 25 de Julio · 4:00 PM</div>
+    <p class="reveal fecha-venue">Rancho Garcia · Big Rock, Illinois</p>
+    <a class="reveal pill-btn pill-btn--gold" href="https://www.google.com/maps/search/?api=1&amp;query=47W532+Scott+Rd%2C+Big+Rock%2C+IL+60511" target="_blank" rel="noopener" aria-label="Abrir Google Maps con la ubicación de Rancho Garcia">📍 Cómo llegar al Rancho Garcia</a>
+  </section>
+
+  <!-- ============ 3 · PADRINOS ============ -->
+  <section class="padrinos" data-screen-label="Padrinos">
+    <div class="reveal ornament" aria-hidden="true"><span class="star">✦</span></div>
+    <span class="reveal label">Con el amor de</span>
+    <div class="reveal padrino">
+      <p class="padrino-nombre">Evangelina Soto</p>
+      <p class="padrino-rol">Mamá</p>
+    </div>
+    <div class="reveal padrino">
+      <p class="padrino-nombre">Julio Cadena</p>
+      <p class="padrino-rol">Papá</p>
+    </div>
+  </section>
+
+  <!-- ============ 4 · CORTE DE HONOR ============ -->
+  <section class="corte" data-screen-label="Corte de Honor">
+    <h2 class="reveal section-title">Corte de Honor</h2>
+    <p class="reveal corte-sub">Chambelanes</p>
+    <div class="corte-grid">
+      <div class="reveal corte-card"><span class="corte-num">I</span><span class="corte-nombre">Gabriel del Muro</span></div>
+      <div class="reveal corte-card"><span class="corte-num">II</span><span class="corte-nombre">Angel Alvez</span></div>
+      <div class="reveal corte-card"><span class="corte-num">III</span><span class="corte-nombre">Santiago Ayala</span></div>
+      <div class="reveal corte-card"><span class="corte-num">IV</span><span class="corte-nombre">Max Magaña</span></div>
+      <div class="reveal corte-card"><span class="corte-num">V</span><span class="corte-nombre">Adrian Para</span></div>
+      <div class="reveal corte-card"><span class="corte-num">VI</span><span class="corte-nombre">Fabian Garcia</span></div>
+      <div class="reveal corte-card"><span class="corte-num">VII</span><span class="corte-nombre">Yohan Delgado</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 5 · PROGRAMA ============ -->
+  <section class="programa" data-screen-label="Programa">
+    <h2 class="reveal programa-title">El Programa</h2>
+    <div class="reveal ornament" aria-hidden="true"><span class="star">✦</span></div>
+
+    <div class="reveal prog-item">
+      <span class="prog-hora">11:00 AM</span>
+      <p class="prog-evento">Misa</p>
+      <p class="prog-detalle">St. Joseph Catholic Church · Elgin, Illinois</p>
+      <a class="pill-btn pill-btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=St+Joseph+Catholic+Church+Elgin+IL" target="_blank" rel="noopener" aria-label="Abrir Google Maps con la ubicación de St. Joseph Catholic Church en Elgin">📍 Ver iglesia en Maps</a>
+    </div>
+
+    <div class="reveal prog-item">
+      <span class="prog-hora">4:00 PM – 7:00 PM</span>
+      <p class="prog-evento">Banquete de Bienvenida</p>
+      <p class="prog-detalle">Rancho Garcia · Big Rock, Illinois</p>
+    </div>
+
+    <div class="reveal prog-item">
+      <span class="prog-hora">7:00 PM – 8:00 PM</span>
+      <p class="prog-evento">El Vals</p>
+      <p class="prog-detalle">Un momento para recordar</p>
+    </div>
+
+    <div class="reveal prog-item">
+      <span class="prog-hora">8:00 PM – 1:00 AM</span>
+      <p class="prog-evento">¡La Fiesta!</p>
+      <p class="prog-detalle">Hasta que el cuerpo aguante</p>
+      <a class="pill-btn pill-btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=47W532+Scott+Rd%2C+Big+Rock%2C+IL+60511" target="_blank" rel="noopener" aria-label="Abrir Google Maps con la ubicación de Rancho Garcia">📍 Ver rancho en Maps</a>
+    </div>
+  </section>
+
+  <!-- ============ 6 · DETALLES ============ -->
+  <section class="detalles" data-screen-label="Detalles">
+    <h2 class="reveal section-title">Detalles</h2>
+
+    <div class="reveal det-card">
+      <div class="det-icon" aria-hidden="true">👢</div>
+      <p class="det-title">Dress Code</p>
+      <p class="det-text">No hay código estricto. Pero no olvides tus botas.</p>
+    </div>
+
+    <div class="reveal det-card">
+      <div class="det-icon" aria-hidden="true">🎁</div>
+      <p class="det-title">Lista de Regalos</p>
+      <p class="det-text">Tu presencia es el mejor regalo. Si deseas darle un detalle a Jacquelinne, aquí está su lista.</p>
+      <a class="pill-btn pill-btn--gold" href="https://www.amazon.com/registries" target="_blank" rel="noopener" aria-label="Ver la lista de regalos en Amazon">Ver lista en Amazon</a>
+    </div>
+
+    <div class="reveal det-card">
+      <div class="det-icon" aria-hidden="true">🏨</div>
+      <p class="det-title">Hospedaje</p>
+      <p class="det-text">Si vienes de fuera, hay hoteles cómodos en Sugar Grove y Aurora, a pocos minutos del rancho.</p>
+      <a class="pill-btn pill-btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=hotels+near+Big+Rock+Illinois" target="_blank" rel="noopener" aria-label="Buscar hoteles cercanos a Big Rock en Google Maps">Buscar hoteles cercanos</a>
+    </div>
+  </section>
+
+  <!-- ============ 7 · RSVP ============ -->
+  <section class="rsvp" data-screen-label="RSVP">
+    <div class="reveal ornament" aria-hidden="true"><span class="star">✦</span><span class="label" style="color: var(--dorado);">RSVP</span><span class="star">✦</span></div>
+    <h2 class="reveal rsvp-headline">Confirma tu asistencia</h2>
+    <span class="reveal rsvp-deadline">Antes del 15 de Julio</span>
+    <a class="reveal pill-btn pill-btn--gold" href="https://wa.me/16304013639" target="_blank" rel="noopener" aria-label="Confirmar asistencia por WhatsApp">💬 Confirmar por WhatsApp</a>
+    <p class="reveal rsvp-sub">Comunícate con mamá · +1 (630) 401-3639</p>
+  </section>
+
+  <!-- ============ 8 · COUNTDOWN ============ -->
+  <section class="timer" data-screen-label="Countdown">
+    <div class="timer-bg" aria-hidden="true"></div>
+    <div class="particle" style="left: 12%; top: 70%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 28%; top: 85%; animation-delay: 2.2s; width: 3px; height: 3px;"></div>
+    <div class="particle" style="left: 47%; top: 78%; animation-delay: 4.4s;"></div>
+    <div class="particle" style="left: 63%; top: 88%; animation-delay: 1.1s; width: 3px; height: 3px;"></div>
+    <div class="particle" style="left: 78%; top: 74%; animation-delay: 3.3s;"></div>
+    <div class="particle" style="left: 90%; top: 82%; animation-delay: 5.5s; width: 3px; height: 3px;"></div>
+
+    <div class="timer-inner">
+      <h2 class="reveal section-title">Ya falta poco...</h2>
+      <div class="reveal timer-grid" role="timer" aria-label="Cuenta regresiva para la quinceañera">
+        <div class="timer-cell"><div class="timer-num" id="tDias">—</div><span class="timer-unit">Días</span></div>
+        <div class="timer-cell"><div class="timer-num" id="tHoras">—</div><span class="timer-unit">Horas</span></div>
+        <div class="timer-cell"><div class="timer-num" id="tMin">—</div><span class="timer-unit">Min</span></div>
+        <div class="timer-cell"><div class="timer-num" id="tSeg">—</div><span class="timer-unit">Seg</span></div>
+      </div>
+      <p class="reveal timer-sub">Sábado 25 de Julio · 4:00 PM · Rancho Garcia</p>
+    </div>
+  </section>
+
+  <!-- ============ 9 · FOOTER ============ -->
+  <section class="footer" data-screen-label="Footer">
+    <p class="reveal footer-name">Jacquelinne</p>
+    <div class="reveal ornament" aria-hidden="true"><span class="star">✦</span></div>
+    <p class="reveal footer-meta">Quinceañera · 25 de Julio, 2026<br></br>Big Rock, Illinois</p>
+    <p class="reveal footer-credit">Con amor, Evangelina &amp; Julio</p>
+  </section>
+
+</div>
+
+<!-- YouTube audio oculto -->
+<div style="position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+  <div id="yt-player"></div>
+</div>
+
+<!-- Botón flotante música -->
+<button class="music-btn" id="musicBtn" aria-label="Reproducir música">♪</button>
+
+<script>
+  // ---------- Reveal on scroll ----------
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  // ---------- Hero video ping-pong loop ----------
+  (function () {
+    var video = document.getElementById('heroVideo');
+    if (!video) return;
+
+    fetch('assets/hero-video2.mp4')
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.blob(); })
+      .then(function (blob) {
+        video.src = URL.createObjectURL(blob);
+        video.play().catch(function () {});
+      })
+      .catch(function () {});
+
+    var reversing = false;
+
+    function playForward() {
+      reversing = false;
+      try { video.playbackRate = 1; } catch (e) {}
+      video.play().catch(function () {});
+    }
+
+    function scrubReverse() {
+      reversing = true;
+      var last = performance.now();
+      function step(now) {
+        if (!reversing) return;
+        var dt = (now - last) / 1000;
+        last = now;
+        var t = video.currentTime - dt;
+        if (t <= 0.05) { reversing = false; video.currentTime = 0; playForward(); return; }
+        video.currentTime = t;
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function startReverse() {
+      var nativeWorked = false;
+      try {
+        video.playbackRate = -1;
+        if (video.playbackRate === -1) {
+          nativeWorked = true;
+          video.play().catch(function () {});
+          var t0 = video.currentTime;
+          setTimeout(function () {
+            if (video.currentTime >= t0 - 0.01 && !reversing) {
+              try { video.playbackRate = 1; } catch (e) {}
+              video.pause(); scrubReverse();
+            }
+          }, 300);
+          var onTU = function () {
+            if (video.currentTime <= 0.06 && video.playbackRate === -1) {
+              video.removeEventListener('timeupdate', onTU); playForward();
+            }
+          };
+          video.addEventListener('timeupdate', onTU);
+        }
+      } catch (e) {}
+      if (!nativeWorked) { video.pause(); scrubReverse(); }
+    }
+
+    video.addEventListener('ended', startReverse);
+
+    var kick = function () {
+      if (video.paused && !reversing) { video.play().catch(function () {}); }
+    };
+    document.addEventListener('touchstart', kick, { once: true });
+    document.addEventListener('click', kick, { once: true });
+  })();
+
+  // ---------- Countdown ----------
+  (function () {
+    var target = new Date('2026-07-25T16:00:00');
+    var dEl = document.getElementById('tDias');
+    var hEl = document.getElementById('tHoras');
+    var mEl = document.getElementById('tMin');
+    var sEl = document.getElementById('tSeg');
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function tick() {
+      var diff = target.getTime() - Date.now();
+      if (diff <= 0) {
+        dEl.textContent = '00';
+        hEl.textContent = '00';
+        mEl.textContent = '00';
+        sEl.textContent = '00';
+        document.querySelector('.timer .section-title').textContent = '¡Hoy es el gran día!';
+        clearInterval(intervalId);
+        return;
+      }
+      var s = Math.floor(diff / 1000);
+      dEl.textContent = pad(Math.floor(s / 86400));
+      hEl.textContent = pad(Math.floor((s % 86400) / 3600));
+      mEl.textContent = pad(Math.floor((s % 3600) / 60));
+      sEl.textContent = pad(s % 60);
+    }
+
+    tick();
+    var intervalId = setInterval(tick, 1000);
+  })();
+
+  // ---------- Música (YouTube IFrame API) ----------
+  (function () {
+    var player, playing = false, ready = false;
+    var btn = document.getElementById('musicBtn');
+
+    window.onYouTubeIframeAPIReady = function () {
+      player = new YT.Player('yt-player', {
+        videoId: 'xAJIMBqlGWo',
+        playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: 'xAJIMBqlGWo', rel: 0, modestbranding: 1 },
+        events: {
+          onReady: function () { ready = true; },
+          onStateChange: function (e) {
+            playing = (e.data === YT.PlayerState.PLAYING);
+            btn.textContent = playing ? '♫' : '♪';
+            playing ? btn.classList.add('playing') : btn.classList.remove('playing');
+          }
+        }
+      });
+    };
+
+    // Cargar API de YouTube
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+
+    // Primer toque del usuario → arrancar música automáticamente
+    function startOnInteraction() {
+      if (ready && !playing) { player.playVideo(); }
+      document.removeEventListener('touchstart', startOnInteraction);
+      document.removeEventListener('click', startOnInteraction);
+    }
+    document.addEventListener('touchstart', startOnInteraction, { once: true });
+    document.addEventListener('click', startOnInteraction, { once: true });
+
+    // Botón toggle
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (!ready) return;
+      playing ? player.pauseVideo() : player.playVideo();
+    });
+  })();
+</script>
+</body>
+</html>

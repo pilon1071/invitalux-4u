@@ -1,0 +1,8 @@
+(globalThis["webpackChunk_canva_web"] = globalThis["webpackChunk_canva_web"] || []).push([[4200],{
+
+/***/ 852814:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);globalThis._5f74ec40302898c5a55451c9fbd04240 = globalThis._5f74ec40302898c5a55451c9fbd04240 || {};(function(__c) {var COc=__webpack_require__(296713).jsx;var DOc=__webpack_require__(270531).PA;__webpack_require__(978109);var EOc=DOc(({No:a})=>{const b=a.id,c=a.role,d=a.MH,e=a.name;a=__c.Oy(__c.Py(Object.values({...a.state,...a.description})));return COc("div",{className:"_pFsfA",id:b,role:c,"aria-roledescription":d,"aria-label":e,...a})});var FOc=class{role(a){const b=this.hma(a);return b&&b.bj?"presentation":a.fill.video.ref?"figure":"img"}name(a,b){const c=this.hma(b)?.text;if(c)return c;b=__c.BP.snapshot(b.fill);return(b=__c.Vm(this.qm,b)?.text)?b:a.name}hma(a){a=__c.gF.snapshot(a);return __c.Um(a)}state(a,b){return{...a.state,autoplay:b.fill.video.ref?.autoplay?__c.J("jFg4Bw"):void 0}}constructor(a){this.qm=a;this.createNode=(b,c)=>{c=c.C;return{...b,type:6,role:this.role(c),name:this.name(b,c),state:this.state(b,c)}}}};__c.UPa={ZFb:({Sg:a,qm:b})=>{const c=a.eN;a.Sq.MZa=(new FOc(b)).createNode;c.nd.Fv=EOc}};
+}).call(globalThis, globalThis._5f74ec40302898c5a55451c9fbd04240);}
+
+}])
+//# sourceMappingURL=sourcemaps/213f824b50467afc.js.map

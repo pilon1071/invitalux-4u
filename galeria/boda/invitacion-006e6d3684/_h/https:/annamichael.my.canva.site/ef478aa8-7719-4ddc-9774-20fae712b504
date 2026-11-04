@@ -1,0 +1,20 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="301.1889473616098"
+        height="213.11491580583382"
+        viewBox="0 0 301.1889473616098 213.11491580583382"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          
+        </defs>
+        <path
+          d="M0,0L0,213.11491580583382L301.1889473616098,213.11491580583382L301.1889473616098,0L0,0"
+          stroke="#000000"
+          stroke-width="0"
+          stroke-dasharray="none"
+          stroke-linecap="butt"
+          fill="none"
+          vector-effect="non-scaling-stroke"
+        />
+      </svg>

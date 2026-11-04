@@ -1,0 +1,11 @@
+(globalThis["webpackChunk_canva_web"] = globalThis["webpackChunk_canva_web"] || []).push([[34029],{
+
+/***/ 287574:
+function(_,__,__webpack_require__){__webpack_require__.n_x=__webpack_require__.n;const __web_req__=__webpack_require__;__web_req__(203640);globalThis._5f74ec40302898c5a55451c9fbd04240=globalThis._5f74ec40302898c5a55451c9fbd04240||{};(function(__c){var U8c;__c.PX=function(a){return __c.iu(a)};__c.T8c=function(a){return new S8c(a)};U8c=__webpack_require__(373126).EW;var V8c=class{get value(){return this.box.get()}constructor(a,b){this.id=a;this.box=b}},W8c=Symbol.iterator,S8c=class{static G(a){__c.M(a,{gx:U8c,p0:U8c,Y1:U8c})}get gx(){var a=new Map;this.cells.forEach((b,c)=>a.set(b.value,c));return a}Er(a){return __c.x(this.gx.get(a),"ref not found")}get empty(){return!this.cells.length}count(){return this.cells.length}toArray(){return this.cells.map(a=>a.value)}Pk(){return new Map(this.map((a,b)=>[b,a]))}get p0(){return this.cells[0]?.value}get Y1(){return this.cells[this.cells.length-
+1]?.value}first(a){return a?this.cells.find(b=>a(b.value))?.value:this.p0}last(a){if(!a)return this.Y1;var b=this.cells;for(let c=b.length-1;c>=0;c--){let d=b[c];if(a(d.value))return d.value}}next(a,b){var c=this.cells;for(a=this.Er(a)+1;a<c.length;a++){let d=c[a];if(d&&(!b||b(d.value)))return d.value}}previous(a,b){var c=this.cells;for(a=this.Er(a)-1;a>=0;a--){let d=c[a];if(d&&(!b||b(d.value)))return d.value}}Ae(a,b){a=this.gx.get(a);b=this.gx.get(b);__c.t(a!=null);__c.t(b!=null);return a<b?-1:a>
+b?1:0}$t(a){return this.cells[this.Er(a)].id}has(a){return this.gx.has(a)}RC(a){return new __c.tJ(this,a)}project(a){return new __c.uJ(this,a)}map(a){return this.cells.map(b=>a(b.value,b.id))}flatMap(a){return this.cells.flatMap(b=>a(b.value,b.id))}filter(a){return this.cells.filter(b=>a(b.value,b.id)).map(b=>b.value)}forEach(a){this.cells.forEach(b=>a(b.value,b.id))}reduce(a,b){return this.cells.reduce((c,d)=>a(c,d.value,d.id),b)}some(a){return this.cells.some(b=>a(b.value,b.id))}every(a){return this.cells.every(b=>
+a(b.value,b.id))}[W8c](){return this.toArray()[Symbol.iterator]()}constructor(a){this.cells=(S8c.G(this),void 0);this.cells=a.map((b,c)=>new V8c(String(c),b))}};
+}).call(globalThis,globalThis._5f74ec40302898c5a55451c9fbd04240);}
+
+}])
+//# sourceMappingURL=sourcemaps/b13f129c14b00fdd.js.map

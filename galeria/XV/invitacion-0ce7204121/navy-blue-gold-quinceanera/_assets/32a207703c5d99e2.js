@@ -1,0 +1,8 @@
+(globalThis["webpackChunk_canva_web"] = globalThis["webpackChunk_canva_web"] || []).push([[82309],{
+
+/***/ 92173:
+function(_,__,__webpack_require__){__webpack_require__.n_x=__webpack_require__.n;const __web_req__=__webpack_require__;__web_req__(765703);__web_req__(911853);__web_req__(339881);globalThis._5f74ec40302898c5a55451c9fbd04240=globalThis._5f74ec40302898c5a55451c9fbd04240||{};(function(__c){var GFd=function(a){return(b,c)=>{c=c.xh.source;var d=b.C.Ly;c!=="duplicating"&&c!=="clipboard"||d.type!=="initialized"||a.track({action:"duplicated",lya:d.lya});return b}};var HFd={he:"qr_code_interacted",vg(a){return __c.Ts({qr_id:a.lya,page:a.page,source:a.source,action:a.action,data_module_style:a.L0c,finder_style:a.U4a,foreground_color:a.vga,background_color:a.backgroundColor,logo:a.eA,sku:a.rib,insights_selection:a.Y9c,enabled:a.enabled,editing_context:a.Ne==null?void 0:__c.Us(a.Ne)})}};var IFd=class{track(a){this.send(a)}async send(a){if(this.Vc){a={page:"editor",rib:await this.Cfb?.().catch(b=>{this.errorService.hn(b,"Failed to resolve the SKU for qr_code_interacted")}),...a};try{this.Vc.track(HFd,a)}catch(b){this.errorService.hn(b,"QrCodeAnalytics.track failed")}}}constructor(a,b,c){this.Vc=a;this.errorService=b;this.Cfb=c}};__c.lld={Zqa:({Gf:{oa:a,errorService:b,Cfb:c}})=>({hooks:{oja:GFd(new IFd(a,b,c))}})};
+}).call(globalThis,globalThis._5f74ec40302898c5a55451c9fbd04240);}
+
+}])
+//# sourceMappingURL=sourcemaps/32a207703c5d99e2.js.map
