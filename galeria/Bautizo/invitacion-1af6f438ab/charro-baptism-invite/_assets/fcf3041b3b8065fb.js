@@ -1,0 +1,12 @@
+(globalThis["webpackChunk_canva_web"] = globalThis["webpackChunk_canva_web"] || []).push([[76574],{
+
+/***/ 578725:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);globalThis._5f74ec40302898c5a55451c9fbd04240 = globalThis._5f74ec40302898c5a55451c9fbd04240 || {};(function(__c) {var mEc=__webpack_require__(186901).EW;var nEc;nEc=Symbol.iterator;
+__c.K_=class{static G(a){__c.M(a,{Zo:mEc,uu:mEc})}get Zo(){return this.BAb().map(a=>{let b=this.Abb.get(a);b==null&&(b=`${this.BOb++}`,this.Abb.set(a,b));return{id:b,ref:a}})}get uu(){const a=new Map;this.Zo.forEach((b,c)=>b&&a.set(b.ref,c));return a}zo(a){return __c.y(this.uu.get(a),"ref not found")}get empty(){return!this.Zo.length}count(){return this.Zo.length}toArray(){return this.Zo.map(a=>a.ref)}Xi(){return new Map(this.map((a,b)=>[b,a]))}get eY(){return this.Zo[0]?.ref}get zZ(){return this.Zo[this.Zo.length-1]?.ref}first(a){return a?
+this.Zo.find(b=>a(b.ref))?.ref:this.eY}last(a){if(!a)return this.zZ;const b=this.Zo;for(let c=b.length-1;c>=0;c--){const d=b[c];if(a(d.ref))return d.ref}}next(a,b){const c=this.Zo;for(a=this.zo(a)+1;a<c.length;a++){const d=c[a];if(!b||b(d.ref))return d.ref}}previous(a,b){const c=this.Zo;for(a=this.zo(a)-1;a>=0;a--){const d=c[a];if(!b||b(d.ref))return d.ref}}rf(a,b){a=this.uu.get(a);b=this.uu.get(b);__c.w(a!=null);__c.w(b!=null);return a<b?-1:a>b?1:0}xr(a){return this.Zo[this.zo(a)].id}has(a){return this.uu.has(a)}Rs(a){return new __c.KO(this,
+a)}project(a){return new __c.LO(this,a)}map(a){return this.Zo.map(({ref:b,id:c})=>a(b,c))}flatMap(a){return this.Zo.flatMap(({ref:b,id:c})=>a(b,c))}filter(a){return this.Zo.filter(b=>a(b.ref,b.id)).map(b=>b.ref)}forEach(a){this.Zo.forEach((b,c)=>a(b.ref,b.id,c))}reduce(a,b){return this.Zo.reduce((c,d)=>a(c,d.ref,d.id),b)}some(a){return this.Zo.some(b=>a(b.ref,b.id))}every(a){return this.Zo.every(b=>a(b.ref,b.id))}[nEc](){return this.toArray()[Symbol.iterator]()}constructor(a){this.BAb=a;this.BOb=
+(__c.K_.G(this),0);this.Abb=new WeakMap}};
+}).call(globalThis, globalThis._5f74ec40302898c5a55451c9fbd04240);}
+
+}])
+//# sourceMappingURL=sourcemaps/fcf3041b3b8065fb.js.map
