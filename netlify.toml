@@ -1,6 +1,12 @@
 [build]
   publish = "."
 
+# Canva exports in galeria/ embed Canva's public Google Maps browser keys,
+# which trip Netlify's secrets scanner. Skip scanning only that folder.
+[build.environment]
+  SECRETS_SCAN_OMIT_PATHS = "galeria/**"
+  SECRETS_SCAN_SMART_DETECTION_OMIT_PATHS = "galeria/**"
+
 [[headers]]
   for = "/*"
   [headers.values]
