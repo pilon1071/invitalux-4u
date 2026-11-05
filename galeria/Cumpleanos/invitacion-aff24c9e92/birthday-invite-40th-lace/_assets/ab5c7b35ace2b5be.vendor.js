@@ -1,0 +1,2 @@
+"use strict";(globalThis.webpackChunk_canva_web=globalThis.webpackChunk_canva_web||[]).push([[49083],{25411:(a,c,d)=>{d.d(c,{A:()=>e});const e=d.p+"data/c004376008578a2c8dbade2451ac6dcc.data"},118208:(a,c,d)=>{d.d(c,{A:()=>e});const e=d.p+"data/2ddee1bc4197b3e5ead7e1182857ba5d.data"},840699:(a,c,d)=>{d.d(c,{A:()=>e});const e=d.p+"wasm/8b4c01e6261441d5b522fa93e425d49c.wasm"}}]);
+//# sourceMappingURL=sourcemaps/ab5c7b35ace2b5be.vendor.js.map
