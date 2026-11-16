@@ -1,0 +1,9 @@
+(globalThis["webpackChunk_canva_web"] = globalThis["webpackChunk_canva_web"] || []).push([[47600],{
+
+/***/ 958525:
+function(_,__,__webpack_require__){__webpack_require__.n_x=__webpack_require__.n;const __web_req__=__webpack_require__;__web_req__(368105);globalThis._5f74ec40302898c5a55451c9fbd04240=globalThis._5f74ec40302898c5a55451c9fbd04240||{};(function(__c){var Rpe=__webpack_require__(719871).jsx;var Spe=__webpack_require__(946311).PA;__webpack_require__(84295);var Tpe=Spe(function({element:a,jk:b,qt:c}){var d=b.id,e=b.role,f=b.Ap,g=b.name,h=b.hidden;b=__c.$w(__c.ax(Object.values({...b.state,...b.description})));a=a.C.link;return Rpe("div",{...__c.zt(),id:d,role:e,"aria-roledescription":f,"aria-label":g,"aria-hidden":h||void 0,...b,children:!!a?.length&&Rpe(__c.bx,{href:a,L$:d,sw:c})})});var Upe=class{role(a){return a.link?.length?"group":a.fill.video.ref?"figure":"img"}name(a,b){var c,d;(d=this.s5a(b))!=null?b=d:(d=__c.Xj.snapshot(b.fill),b=(d=__c.Lm(d))?d:b.fill.image.ref?__c.er(this.ac,b.fill.image.ref):b.fill.video.ref?__c.Cr(this.Yb,b.fill.video.ref):void 0);return(b=(c=b)==null?void 0:c.text)?b:a.name}s5a(a){a=__c.yB.snapshot(a);return __c.Km(a)}state(a,b){return{...a.state,autoplay:b.fill.video.ref?.autoplay?__c.J("jFg4Bw"):void 0}}constructor(a,b,c){this.To=a;this.ac=b;this.Yb=
+c;this.createNode=(d,e)=>{e=e.C;return{...d,type:8,role:this.role(e),name:this.name(d,e),state:this.state(d,e)}}}};__c.Fbb={Npc:({Xf:a,kd:b})=>{var c=a.Jz;a.Mt.Xv.kIa=(new Upe(b.To,b.ac,b.Yb)).createNode;c.fh.HB=Tpe}};
+}).call(globalThis,globalThis._5f74ec40302898c5a55451c9fbd04240);}
+
+}])
+//# sourceMappingURL=sourcemaps/d2b352c8ebdc8b1c.js.map

@@ -1,0 +1,11 @@
+(globalThis["webpackChunk_canva_web"] = globalThis["webpackChunk_canva_web"] || []).push([[34029],{
+
+/***/ 287574:
+(function(_,__,__webpack_require__){__webpack_require__.n_x=__webpack_require__.n;const __web_req__=__webpack_require__;__web_req__(203640);globalThis._5f74ec40302898c5a55451c9fbd04240=globalThis._5f74ec40302898c5a55451c9fbd04240||{};(function(__c){var y$c;__c.MX=function(a){return __c.ou(a)};__c.x$c=function(a){return new w$c(a)};y$c=__webpack_require__(371731).EW;var z$c=class{get value(){return this.box.get()}constructor(a,b){this.id=a;this.box=b}},A$c=Symbol.iterator,w$c=class{static G(a){__c.M(a,{qx:y$c,G0:y$c,w2:y$c})}get qx(){var a=new Map;this.cells.forEach((b,c)=>a.set(b.value,c));return a}Fr(a){return __c.x(this.qx.get(a),"ref not found")}get empty(){return!this.cells.length}count(){return this.cells.length}toArray(){return this.cells.map(a=>a.value)}Uk(){return new Map(this.map((a,b)=>[b,a]))}get G0(){return this.cells[0]?.value}get w2(){return this.cells[this.cells.length-
+1]?.value}first(a){return a?this.cells.find(b=>a(b.value))?.value:this.G0}last(a){if(!a)return this.w2;var b=this.cells;for(let c=b.length-1;c>=0;c--){let d=b[c];if(a(d.value))return d.value}}next(a,b){var c=this.cells;for(a=this.Fr(a)+1;a<c.length;a++){let d=c[a];if(d&&(!b||b(d.value)))return d.value}}previous(a,b){var c=this.cells;for(a=this.Fr(a)-1;a>=0;a--){let d=c[a];if(d&&(!b||b(d.value)))return d.value}}Ae(a,b){a=this.qx.get(a);b=this.qx.get(b);__c.t(a!=null);__c.t(b!=null);return a<b?-1:a>
+b?1:0}du(a){return this.cells[this.Fr(a)].id}has(a){return this.qx.has(a)}ZC(a){return new __c.nJ(this,a)}project(a){return new __c.oJ(this,a)}map(a){return this.cells.map(b=>a(b.value,b.id))}flatMap(a){return this.cells.flatMap(b=>a(b.value,b.id))}filter(a){return this.cells.filter(b=>a(b.value,b.id)).map(b=>b.value)}forEach(a){this.cells.forEach(b=>a(b.value,b.id))}reduce(a,b){return this.cells.reduce((c,d)=>a(c,d.value,d.id),b)}some(a){return this.cells.some(b=>a(b.value,b.id))}every(a){return this.cells.every(b=>
+a(b.value,b.id))}[A$c](){return this.toArray()[Symbol.iterator]()}constructor(a){this.cells=(w$c.G(this),void 0);this.cells=a.map((b,c)=>new z$c(String(c),b))}};
+}).call(globalThis,globalThis._5f74ec40302898c5a55451c9fbd04240);})
+
+}])
+//# sourceMappingURL=sourcemaps/637f86a929340e4f.js.map
